@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ms-digitalfix-bff
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Emisor esperado. Spring descarga el JWKS desde aqui y valida la firma.
+          # Requiere requestedAccessTokenVersion = 2 en el manifiesto del registro de la API.
+          issuer-uri: https://login.microsoftonline.com/a6a0c27e-18a7-4209-bd1b-32338be5cb66/v2.0
+
+digitalfix:
+  security:
+    # Claim "aud" que debe traer el token. Es el Application ID URI de la API.
+    audience: api://8e5e408b-c101-4bc1-a5d3-01f702720462
+  cors:
+    allowed-origins:
+      - http://localhost:4200
+
+logging:
+  level:
+    org.springframework.security: INFO
