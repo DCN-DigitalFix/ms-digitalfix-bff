@@ -25,3 +25,5 @@ digitalfix:
     allowed-origins:
       - http://localhost:4200
       - https://44.206.195.117
+  servicios:
+    workorders: http://localhost:8081

@@ -11,6 +11,17 @@ import org.springframework.web.context.request.WebRequest;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(org.springframework.web.client.HttpClientErrorException.class)
+    public ResponseEntity<ApiError> handleHttpClientError(
+            org.springframework.web.client.HttpClientErrorException ex, WebRequest request) {
+        ApiError body = ApiError.of(
+                ex.getStatusCode().value(),
+                ex.getStatusText(),
+                ex.getResponseBodyAsString(),
+                path(request));
+        return ResponseEntity.status(ex.getStatusCode()).body(body);
+    }
+
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiError> handleNotFound(NotFoundException ex, WebRequest request) {
         ApiError body = ApiError.of(
