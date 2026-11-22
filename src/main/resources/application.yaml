@@ -27,3 +27,9 @@ digitalfix:
       - https://44.206.195.117
   servicios:
     workorders: http://localhost:8081
+    audit: http://localhost:8083
+    # catalog usa su propio tenant/audiencia (ver su application.yaml), distinto
+    # del resto de los microservicios. El BFF solo reenvia el token que recibe,
+    # tal cual: si el token activo no fue emitido para esa audiencia, catalog
+    # devuelve 401 aunque el BFF lo haya aceptado.
+    catalog: http://localhost:8082

@@ -33,6 +33,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
+    @ExceptionHandler(StockInsuficienteException.class)
+    public ResponseEntity<ApiError> handleStockInsuficiente(
+            StockInsuficienteException ex, WebRequest request) {
+        ApiError body = ApiError.of(
+                HttpStatus.CONFLICT.value(),
+                "Conflict",
+                ex.getMessage(),
+                path(request));
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidation(
             MethodArgumentNotValidException ex, WebRequest request) {
