@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
  * Ambas deben cumplirse. Un Admin cuyo token no traiga OT.Create tampoco puede crear.
  */
 @RestController
-@RequestMapping("/api/workorders")
+@RequestMapping("/api/v1/workorders")
 public class WorkOrderController {
 
     private final WorkOrderService service;

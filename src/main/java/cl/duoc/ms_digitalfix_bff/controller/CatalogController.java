@@ -31,7 +31,7 @@ import jakarta.validation.Valid;
  * descontar stock para Admin/Supervisor.
  */
 @RestController
-@RequestMapping("/api/catalog")
+@RequestMapping("/api/v1/catalog")
 public class CatalogController {
 
     private final CatalogService service;

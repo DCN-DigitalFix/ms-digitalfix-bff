@@ -34,7 +34,7 @@ public class AuditService {
 
     public List<AuditEventView> listarUltimos(int limite) {
         ResponseEntity<List<AuditEventView>> response = restTemplate.exchange(
-                baseUrl + "/api/audit/events?limite=" + limite,
+                baseUrl + "/api/v1/audit/events?limite=" + limite,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<AuditEventView>>() {});
@@ -45,7 +45,7 @@ public class AuditService {
     public List<AuditEventView> timelineDeOrden(String ordenId) {
         try {
             ResponseEntity<List<AuditEventView>> response = restTemplate.exchange(
-                    baseUrl + "/api/audit/orders/" + ordenId + "/timeline",
+                    baseUrl + "/api/v1/audit/orders/" + ordenId + "/timeline",
                     HttpMethod.GET,
                     null,
                     new ParameterizedTypeReference<List<AuditEventView>>() {});

@@ -19,7 +19,7 @@ import cl.duoc.ms_digitalfix_bff.service.AuditService;
  * PATCH aqui, igual que alla.
  */
 @RestController
-@RequestMapping("/api/audit")
+@RequestMapping("/api/v1/audit")
 public class AuditController {
 
     private final AuditService service;

@@ -24,7 +24,7 @@ import cl.duoc.ms_digitalfix_bff.exception.NotFoundException;
 
 /**
  * Cliente hacia ms-digitalfix-kafka-admin. Mismas rutas que alla
- * (/api/kafka/...): a diferencia de catalog, aqui no hace falta traducir el
+ * (/api/v1/kafka/...): a diferencia de catalog, aqui no hace falta traducir el
  * contrato, solo propagar.
  */
 @Service
@@ -44,33 +44,33 @@ public class KafkaAdminProxyService {
 
     public List<TopicoResponse> listarTopicos() {
         ResponseEntity<List<TopicoResponse>> response = restTemplate.exchange(
-                baseUrl + "/api/kafka/topics", HttpMethod.GET, null,
+                baseUrl + "/api/v1/kafka/topics", HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<TopicoResponse>>() {});
         return response.getBody();
     }
 
     public TopicoResponse obtenerTopico(String nombre) {
         try {
-            return restTemplate.getForObject(baseUrl + "/api/kafka/topics/" + nombre, TopicoResponse.class);
+            return restTemplate.getForObject(baseUrl + "/api/v1/kafka/topics/" + nombre, TopicoResponse.class);
         } catch (HttpClientErrorException e) {
             throw traducirNotFound(e, "No existe el topico " + nombre);
         }
     }
 
     public TopicoResponse crearTopico(CrearTopicoRequest request) {
-        return restTemplate.postForObject(baseUrl + "/api/kafka/topics", request, TopicoResponse.class);
+        return restTemplate.postForObject(baseUrl + "/api/v1/kafka/topics", request, TopicoResponse.class);
     }
 
     public OperacionResponse actualizarConfiguracion(String nombre, ActualizarConfigRequest request) {
         ResponseEntity<OperacionResponse> response = restTemplate.exchange(
-                baseUrl + "/api/kafka/topics/" + nombre + "/config", HttpMethod.PUT,
+                baseUrl + "/api/v1/kafka/topics/" + nombre + "/config", HttpMethod.PUT,
                 new HttpEntity<>(request), OperacionResponse.class);
         return response.getBody();
     }
 
     public OperacionResponse ampliarParticiones(String nombre, AmpliarParticionesRequest request) {
         ResponseEntity<OperacionResponse> response = restTemplate.exchange(
-                baseUrl + "/api/kafka/topics/" + nombre + "/partitions", HttpMethod.PUT,
+                baseUrl + "/api/v1/kafka/topics/" + nombre + "/partitions", HttpMethod.PUT,
                 new HttpEntity<>(request), OperacionResponse.class);
         return response.getBody();
     }
@@ -78,7 +78,7 @@ public class KafkaAdminProxyService {
     public OperacionResponse eliminarTopico(String nombre) {
         try {
             ResponseEntity<OperacionResponse> response = restTemplate.exchange(
-                    baseUrl + "/api/kafka/topics/" + nombre, HttpMethod.DELETE,
+                    baseUrl + "/api/v1/kafka/topics/" + nombre, HttpMethod.DELETE,
                     null, OperacionResponse.class);
             return response.getBody();
         } catch (HttpClientErrorException e) {
@@ -90,7 +90,7 @@ public class KafkaAdminProxyService {
 
     public List<ConsumerGroupResumenResponse> listarConsumerGroups() {
         ResponseEntity<List<ConsumerGroupResumenResponse>> response = restTemplate.exchange(
-                baseUrl + "/api/kafka/consumer-groups", HttpMethod.GET, null,
+                baseUrl + "/api/v1/kafka/consumer-groups", HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<ConsumerGroupResumenResponse>>() {});
         return response.getBody();
     }
@@ -98,7 +98,7 @@ public class KafkaAdminProxyService {
     public ConsumerGroupResponse obtenerConsumerGroup(String groupId) {
         try {
             return restTemplate.getForObject(
-                    baseUrl + "/api/kafka/consumer-groups/" + groupId, ConsumerGroupResponse.class);
+                    baseUrl + "/api/v1/kafka/consumer-groups/" + groupId, ConsumerGroupResponse.class);
         } catch (HttpClientErrorException e) {
             throw traducirNotFound(e, "No existe el consumer group " + groupId);
         }
@@ -107,7 +107,7 @@ public class KafkaAdminProxyService {
     // --- Cluster ---------------------------------------------------------
 
     public ClusterResponse obtenerCluster() {
-        return restTemplate.getForObject(baseUrl + "/api/kafka/cluster", ClusterResponse.class);
+        return restTemplate.getForObject(baseUrl + "/api/v1/kafka/cluster", ClusterResponse.class);
     }
 
     // -----------------------------------------------------------------------

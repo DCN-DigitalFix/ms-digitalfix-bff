@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
  * sistema.
  */
 @RestController
-@RequestMapping("/api/kafka")
+@RequestMapping("/api/v1/kafka")
 public class KafkaAdminController {
 
     private final KafkaAdminProxyService service;

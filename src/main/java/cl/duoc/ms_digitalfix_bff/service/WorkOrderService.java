@@ -29,7 +29,7 @@ public class WorkOrderService {
     }
 
     public List<WorkOrder> listar() {
-        return exchangeList("/api/workorders", HttpMethod.GET, null);
+        return exchangeList("/api/v1/workorders", HttpMethod.GET, null);
     }
 
     public List<WorkOrder> listarPorCreador(String creador) {
@@ -39,7 +39,7 @@ public class WorkOrderService {
     public WorkOrder obtener(String id) {
         try {
             ResponseEntity<WorkOrder> response = restTemplate.getForEntity(
-                    baseUrl + "/api/workorders/" + id, WorkOrder.class);
+                    baseUrl + "/api/v1/workorders/" + id, WorkOrder.class);
             return response.getBody();
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().value() == 404) {
@@ -52,7 +52,7 @@ public class WorkOrderService {
     public WorkOrder crear(CrearWorkOrderRequest request, String creador) {
         try {
             ResponseEntity<WorkOrder> response = restTemplate.postForEntity(
-                    baseUrl + "/api/workorders", request, WorkOrder.class);
+                    baseUrl + "/api/v1/workorders", request, WorkOrder.class);
             return response.getBody();
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().value() == 404) {
@@ -65,7 +65,7 @@ public class WorkOrderService {
     public WorkOrder cambiarEstado(String id, CambiarEstadoRequest request) {
         try {
             ResponseEntity<WorkOrder> response = restTemplate.exchange(
-                    baseUrl + "/api/workorders/" + id + "/estado",
+                    baseUrl + "/api/v1/workorders/" + id + "/estado",
                     HttpMethod.PATCH,
                     new HttpEntity<>(request),
                     WorkOrder.class);
@@ -80,7 +80,7 @@ public class WorkOrderService {
 
     public void eliminar(String id) {
         try {
-            restTemplate.delete(baseUrl + "/api/workorders/" + id);
+            restTemplate.delete(baseUrl + "/api/v1/workorders/" + id);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().value() == 404) {
                 throw new NotFoundException("No existe la orden de trabajo " + id);

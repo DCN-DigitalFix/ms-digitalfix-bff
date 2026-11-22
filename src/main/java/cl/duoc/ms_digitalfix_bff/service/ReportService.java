@@ -28,14 +28,14 @@ public class ReportService {
     }
 
     public ReportSummaryView resumen() {
-        return restTemplate.getForObject(baseUrl + "/api/reports/summary", ReportSummaryView.class);
+        return restTemplate.getForObject(baseUrl + "/api/v1/reports/summary", ReportSummaryView.class);
     }
 
     /** report responde 404 si la orden no existe y 409 si existe pero no esta cerrada. */
     public CertificateView certificado(String ordenId) {
         try {
             return restTemplate.getForObject(
-                    baseUrl + "/api/reports/orders/" + ordenId + "/certificate", CertificateView.class);
+                    baseUrl + "/api/v1/reports/orders/" + ordenId + "/certificate", CertificateView.class);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().value() == 404) {
                 throw new NotFoundException("No hay datos de reporte para la orden " + ordenId);

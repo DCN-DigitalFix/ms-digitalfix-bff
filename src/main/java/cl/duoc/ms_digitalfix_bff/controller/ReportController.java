@@ -14,7 +14,7 @@ import cl.duoc.ms_digitalfix_bff.service.ReportService;
 
 /** Reenvia a ms-digitalfix-report, que es de solo lectura: mismos roles que alla. */
 @RestController
-@RequestMapping("/api/reports")
+@RequestMapping("/api/v1/reports")
 public class ReportController {
 
     private final ReportService service;

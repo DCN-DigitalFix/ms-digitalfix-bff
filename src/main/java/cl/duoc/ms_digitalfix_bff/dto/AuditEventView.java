@@ -4,7 +4,7 @@ import java.time.Instant;
 
 /**
  * Evento de auditoria tal como lo expone ms-digitalfix-audit en
- * GET /api/audit/events y GET /api/audit/orders/{id}/timeline. El BFF solo
+ * GET /api/v1/audit/events y GET /api/v1/audit/orders/{id}/timeline. El BFF solo
  * reenvia la forma real de esa API; no agrega campos que audit no devuelve
  * (por ejemplo, no hay particion ni offset de Kafka en la respuesta).
  */

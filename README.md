@@ -61,7 +61,7 @@
 │                                                             │
 │  ┌──────────────┐  ┌─────────────────┐  ┌───────────────┐  │
 │  │ SecurityConfig│  │WorkOrderController│  │SessionCtrl   │  │
-│  │ (JWT decode  │  │  /api/workorders  │  │  /api/me     │  │
+│  │ (JWT decode  │  │  /api/v1/workorders  │  │  /api/me     │  │
 │  │  + CORS)     │  └────────┬──────────┘  └───────────────┘  │
 │  └──────────────┘           │                                │
 │                    ┌────────▼──────────┐                    │
@@ -90,17 +90,17 @@
 |--------|------|------|-------------|
 | `GET` | `/api/me` | ✅ JWT válido | Devuelve los claims del token: subject, nombre, roles, scopes, audiencia y expiración |
 
-### Órdenes de Trabajo — `/api/workorders`
+### Órdenes de Trabajo — `/api/v1/workorders`
 
 | Método | Ruta | Rol requerido | Scope requerido | Descripción |
 |--------|------|--------------|----------------|-------------|
-| `GET` | `/api/workorders` | Admin / Supervisor / Cliente / Auditor | `OT.Read` | Lista todas las OT (el Cliente solo ve las suyas) |
-| `GET` | `/api/workorders/{id}` | Admin / Supervisor / Cliente / Auditor | `OT.Read` | Obtiene una OT por ID |
-| `POST` | `/api/workorders` | Admin / Supervisor / Cliente | `OT.Create` | Crea una nueva OT |
-| `PATCH` | `/api/workorders/{id}/estado` | Admin / Supervisor | `OT.Create` | Cambia estado y/o técnico asignado |
-| `DELETE` | `/api/workorders/{id}` | Admin | `OT.Create` | Elimina una OT (operación irreversible) |
+| `GET` | `/api/v1/workorders` | Admin / Supervisor / Cliente / Auditor | `OT.Read` | Lista todas las OT (el Cliente solo ve las suyas) |
+| `GET` | `/api/v1/workorders/{id}` | Admin / Supervisor / Cliente / Auditor | `OT.Read` | Obtiene una OT por ID |
+| `POST` | `/api/v1/workorders` | Admin / Supervisor / Cliente | `OT.Create` | Crea una nueva OT |
+| `PATCH` | `/api/v1/workorders/{id}/estado` | Admin / Supervisor | `OT.Create` | Cambia estado y/o técnico asignado |
+| `DELETE` | `/api/v1/workorders/{id}` | Admin | `OT.Create` | Elimina una OT (operación irreversible) |
 
-#### Ejemplo — Crear OT (`POST /api/workorders`)
+#### Ejemplo — Crear OT (`POST /api/v1/workorders`)
 
 ```json
 {
@@ -110,7 +110,7 @@
 }
 ```
 
-#### Ejemplo — Cambiar estado (`PATCH /api/workorders/{id}/estado`)
+#### Ejemplo — Cambiar estado (`PATCH /api/v1/workorders/{id}/estado`)
 
 ```json
 {
@@ -284,7 +284,7 @@ ms-digitalfix-bff/
 │   │   │   ├── controller/
 │   │   │   │   ├── HealthController.java          # GET /api/health (público)
 │   │   │   │   ├── SessionController.java         # GET /api/me (claims del token)
-│   │   │   │   └── WorkOrderController.java       # CRUD /api/workorders
+│   │   │   │   └── WorkOrderController.java       # CRUD /api/v1/workorders
 │   │   │   ├── dto/
 │   │   │   │   ├── CambiarEstadoRequest.java      # Body para PATCH /estado
 │   │   │   │   ├── CrearWorkOrderRequest.java     # Body para POST /workorders
@@ -328,7 +328,7 @@ Todos los errores (401, 403, 404, 400, 500) devuelven el mismo formato JSON:
   "status": 404,
   "error": "Not Found",
   "message": "No existe la orden de trabajo OT-9999",
-  "path": "/api/workorders/OT-9999"
+  "path": "/api/v1/workorders/OT-9999"
 }
 ```
 

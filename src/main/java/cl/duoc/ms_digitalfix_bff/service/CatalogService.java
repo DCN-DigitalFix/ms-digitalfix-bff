@@ -26,8 +26,8 @@ import cl.duoc.ms_digitalfix_bff.exception.StockInsuficienteException;
 /**
  * Cliente hacia ms-digitalfix-catalog. Las rutas reales de ese servicio son
  * /api/v1/catalog/services y /api/v1/catalog/repuestos (ver
- * RepuestoController y ServicioController alla); el BFF expone su propio
- * contrato mas simple (/api/catalog/...) hacia el frontend y aqui traduce.
+ * RepuestoController y ServicioController alla); el BFF expone el mismo
+ * contrato versionado (/api/v1/catalog/...) hacia el frontend y aqui traduce.
  *
  * El BFF no declara jackson-databind (no lo necesita para nada mas), asi que
  * el campo "message" del cuerpo de error de catalog se extrae con una
