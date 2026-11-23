@@ -2,6 +2,7 @@ package cl.duoc.ms_digitalfix_bff.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -22,6 +23,7 @@ public class WorkOrderService {
     private final RestTemplate restTemplate;
     private final String baseUrl;
 
+    @Autowired
     public WorkOrderService(RestTemplate restTemplate,
                             @Value("${digitalfix.servicios.workorders}") String baseUrl) {
         this.restTemplate = restTemplate;
