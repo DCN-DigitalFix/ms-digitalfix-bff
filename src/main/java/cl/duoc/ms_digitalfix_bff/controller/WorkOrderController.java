@@ -37,12 +37,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/workorders")
 public class WorkOrderController {
 
-    private final WorkOrderService service;
-
     @Autowired
-    public WorkOrderController(WorkOrderService service) {
-        this.service = service;
-    }
+    private WorkOrderService service;
 
     /** Un Cliente ve solo lo suyo; los demas perfiles ven todo. */
     @GetMapping

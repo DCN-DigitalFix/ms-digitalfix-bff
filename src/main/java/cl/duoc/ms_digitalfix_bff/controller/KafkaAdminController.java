@@ -36,12 +36,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/kafka")
 public class KafkaAdminController {
 
-    private final KafkaAdminProxyService service;
-
     @Autowired
-    public KafkaAdminController(KafkaAdminProxyService service) {
-        this.service = service;
-    }
+    private KafkaAdminProxyService service;
 
     // --- Topicos -------------------------------------------------------
 

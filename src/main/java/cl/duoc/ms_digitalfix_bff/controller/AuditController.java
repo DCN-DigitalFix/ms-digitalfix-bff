@@ -22,12 +22,8 @@ import cl.duoc.ms_digitalfix_bff.service.AuditService;
 @RequestMapping("/api/v1/audit")
 public class AuditController {
 
-    private final AuditService service;
-
     @Autowired
-    public AuditController(AuditService service) {
-        this.service = service;
-    }
+    private AuditService service;
 
     @GetMapping("/events")
     @PreAuthorize("hasAnyRole('Admin', 'Auditor') and hasAuthority('SCOPE_OT.Read')")

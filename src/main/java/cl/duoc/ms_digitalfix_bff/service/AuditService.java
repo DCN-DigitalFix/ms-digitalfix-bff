@@ -22,15 +22,11 @@ import cl.duoc.ms_digitalfix_bff.exception.NotFoundException;
 @Service
 public class AuditService {
 
-    private final RestTemplate restTemplate;
-    private final String baseUrl;
-
     @Autowired
-    public AuditService(RestTemplate restTemplate,
-                         @Value("${digitalfix.servicios.audit}") String baseUrl) {
-        this.restTemplate = restTemplate;
-        this.baseUrl = baseUrl;
-    }
+    private RestTemplate restTemplate;
+
+    @Value("${digitalfix.servicios.audit}")
+    private String baseUrl;
 
     public List<AuditEventView> listarUltimos(int limite) {
         ResponseEntity<List<AuditEventView>> response = restTemplate.exchange(

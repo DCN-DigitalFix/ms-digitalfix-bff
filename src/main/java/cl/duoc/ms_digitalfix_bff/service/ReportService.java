@@ -17,15 +17,11 @@ import cl.duoc.ms_digitalfix_bff.exception.NotFoundException;
 @Service
 public class ReportService {
 
-    private final RestTemplate restTemplate;
-    private final String baseUrl;
-
     @Autowired
-    public ReportService(RestTemplate restTemplate,
-                          @Value("${digitalfix.servicios.report}") String baseUrl) {
-        this.restTemplate = restTemplate;
-        this.baseUrl = baseUrl;
-    }
+    private RestTemplate restTemplate;
+
+    @Value("${digitalfix.servicios.report}")
+    private String baseUrl;
 
     public ReportSummaryView resumen() {
         return restTemplate.getForObject(baseUrl + "/api/v1/reports/summary", ReportSummaryView.class);

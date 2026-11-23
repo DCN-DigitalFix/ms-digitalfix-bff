@@ -38,15 +38,11 @@ public class CatalogService {
 
     private static final Pattern CAMPO_MESSAGE = Pattern.compile("\"message\"\\s*:\\s*\"([^\"]*)\"");
 
-    private final RestTemplate restTemplate;
-    private final String baseUrl;
-
     @Autowired
-    public CatalogService(RestTemplate restTemplate,
-                           @Value("${digitalfix.servicios.catalog}") String baseUrl) {
-        this.restTemplate = restTemplate;
-        this.baseUrl = baseUrl;
-    }
+    private RestTemplate restTemplate;
+
+    @Value("${digitalfix.servicios.catalog}")
+    private String baseUrl;
 
     // --- Servicios -----------------------------------------------------
 

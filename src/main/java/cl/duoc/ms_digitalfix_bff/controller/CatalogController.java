@@ -34,12 +34,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/v1/catalog")
 public class CatalogController {
 
-    private final CatalogService service;
-
     @Autowired
-    public CatalogController(CatalogService service) {
-        this.service = service;
-    }
+    private CatalogService service;
 
     // --- Servicios -------------------------------------------------------
 

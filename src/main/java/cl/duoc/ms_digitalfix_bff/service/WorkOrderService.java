@@ -20,15 +20,11 @@ import cl.duoc.ms_digitalfix_bff.exception.NotFoundException;
 @Service
 public class WorkOrderService {
 
-    private final RestTemplate restTemplate;
-    private final String baseUrl;
-
     @Autowired
-    public WorkOrderService(RestTemplate restTemplate,
-                            @Value("${digitalfix.servicios.workorders}") String baseUrl) {
-        this.restTemplate = restTemplate;
-        this.baseUrl = baseUrl;
-    }
+    private RestTemplate restTemplate;
+
+    @Value("${digitalfix.servicios.workorders}")
+    private String baseUrl;
 
     public List<WorkOrder> listar() {
         return exchangeList("/api/v1/workorders", HttpMethod.GET, null);

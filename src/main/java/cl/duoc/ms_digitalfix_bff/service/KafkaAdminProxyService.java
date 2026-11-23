@@ -30,15 +30,11 @@ import cl.duoc.ms_digitalfix_bff.exception.NotFoundException;
 @Service
 public class KafkaAdminProxyService {
 
-    private final RestTemplate restTemplate;
-    private final String baseUrl;
-
     @Autowired
-    public KafkaAdminProxyService(RestTemplate restTemplate,
-                                   @Value("${digitalfix.servicios.kafka-admin}") String baseUrl) {
-        this.restTemplate = restTemplate;
-        this.baseUrl = baseUrl;
-    }
+    private RestTemplate restTemplate;
+
+    @Value("${digitalfix.servicios.kafka-admin}")
+    private String baseUrl;
 
     // --- Topicos -------------------------------------------------------
 

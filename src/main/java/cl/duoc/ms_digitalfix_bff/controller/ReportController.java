@@ -17,12 +17,8 @@ import cl.duoc.ms_digitalfix_bff.service.ReportService;
 @RequestMapping("/api/v1/reports")
 public class ReportController {
 
-    private final ReportService service;
-
     @Autowired
-    public ReportController(ReportService service) {
-        this.service = service;
-    }
+    private ReportService service;
 
     @GetMapping("/summary")
     @PreAuthorize("hasAnyRole('Admin', 'Supervisor', 'Auditor') and hasAuthority('SCOPE_OT.Read')")
